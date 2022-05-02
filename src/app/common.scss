@@ -1,0 +1,20 @@
+.wrapper{
+    max-width: 1200px;
+    margin: 0 10px;
+    box-sizing: border-box;
+}
+
+.button__common{
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: 1px solid lightgrey;
+
+    &:hover{
+        border: 1px solid darkblue;
+    }
+    &:focus, &:active{
+        border: 1px solid black;
+    }
+
+}

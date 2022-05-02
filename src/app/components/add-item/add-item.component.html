@@ -1,0 +1,6 @@
+<div class="wrapper">
+    <form class="form__add" [formGroup]="addForm" action="#!">
+        <textarea class="form__add__desc" [(ngModel)]="textAssignment" formControlName="itemContent" placeholder="The text of your new assignment could be here"></textarea>
+        <button class="form__add__submit" [disabled]="addForm.invalid" type="submit" (click)="add()">Add</button>
+    </form>
+</div>

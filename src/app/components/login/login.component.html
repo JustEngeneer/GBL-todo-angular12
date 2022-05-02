@@ -1,0 +1,28 @@
+<div class="wrapper">
+    <h2 class="login__title">Login page</h2>
+    <form class="login__form" [formGroup]="loginForm" action="!#">
+        <label> Email *
+            <br>
+            <input class="login__email__input" [(ngModel)]="login" name="login" formControlName="userEmail" type="text" placeholder=" example@gmail.com">
+        </label>
+        <div class="wrong__wrapper">
+            <p class="login__wrong" 
+            *ngIf="loginForm.controls['userEmail'].invalid && loginForm.controls['userEmail'].touched">
+            Wrong email. It must be like 'example@gmail.com'.
+            </p>
+        </div>    
+        <label> Password *
+            <br>
+            <input class="login__password__input" [(ngModel)]="password" name="password" formControlName="userPassword" type="text" placeholder=" 8 min, 12 max">
+        </label>
+        <div class="wrong__wrapper">
+            <p class="login__wrong"
+            *ngIf="loginForm.controls['userPassword'].invalid && loginForm.controls['userPassword'].touched">
+            Wrong password. It must be from 8 to 12 symbols.
+            </p>
+        </div>    
+        <p>The fields with * tag are required</p>
+        <br>
+        <button class="login__submit" [disabled]="loginForm.invalid" type="submit" routerLink="todo-list" (click)="onSubmit($event)">Login</button>
+    </form>
+</div>    

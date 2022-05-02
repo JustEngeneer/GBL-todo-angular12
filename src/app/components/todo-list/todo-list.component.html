@@ -1,0 +1,21 @@
+<h1 class="wrapper todo__title">TODO list</h1>
+<app-add-item></app-add-item>
+<app-item-filters
+    (sort)="sortItems($event)" 
+    (filter)="render($event)"
+    >
+</app-item-filters>
+<app-item
+    [id]="item.id"
+    [date]="item.date"
+    [priority]="item.priority"
+    [textAssignment]="item.textAssignment"
+    [taskDone]="item.taskDone"
+    *ngFor="let item of items | async; let i = index"
+    >
+</app-item>
+<div class="wrapper">
+    <h4 *ngIf="(items | async)?.length === 0">
+        Todo list is empty!
+    </h4>
+</div>    

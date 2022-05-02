@@ -1,0 +1,110 @@
+.item{
+    display: flex;
+    justify-content: space-around;
+
+    &__data{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 10%;
+    }
+    &__priority{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 10%;
+
+        &_value{
+            font-size: 24px;
+            line-height: 50px;
+            text-align: center;
+            color: white;
+            width: 40px;
+            height: 80%;
+            border: 1px solid black;
+            background-color: darkgrey;
+        }
+
+        &_change{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            &-btn{
+                width: 25px;
+                height: 20px;
+                margin: 5px auto;
+                background-color: transparent;
+                background-position: 0 -3px;
+                background-repeat: no-repeat;
+                background-size: cover;
+                border: 1px solid lightgrey;
+
+                &:hover{
+                    border: 1px solid darkblue;
+                }
+                &:focus, &:active{
+                    border: 1px solid black;
+                }
+
+                &-up{
+                    background-image: url('../../../assets/img/arrow-up.png');
+                }
+                &-down{
+                    background-image: url('../../../assets/img/arrow-down.png');
+                }
+            }
+        }   
+    }
+    &__desc{
+        width: 65%;
+        min-height: 50px;
+        border: 1px solid darkgray;
+        border-radius: 5px;
+        margin: auto 0;
+    }
+    &__actions{
+        list-style-type: none;
+        display: flex;
+        justify-content: space-around;
+        width: 15%;
+
+        &_btn{
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            border: 1px solid lightgrey;
+            background-color: transparent;
+            background-repeat: no-repeat;
+            background-size: cover;
+
+            &:hover{
+                border: 1px solid darkblue;
+            }
+            &:focus, &:active{
+                border: 1px solid black;
+            }
+
+        }
+        &_edit{
+            background-image: url('../../../assets/img/edit.png');
+        }
+        &_done{
+            background-image: url('../../../assets/img/check.png');
+        }
+        &_remove{
+            background-image: url('../../../assets/img/delete.png');
+        }    
+    }
+
+}
+.item__done{
+    background-color: lightgray;
+}
+
+.task__outstanding{
+    opacity: 0.3;
+}
+
