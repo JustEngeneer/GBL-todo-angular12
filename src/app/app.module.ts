@@ -15,6 +15,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { ModelService }         from './services/model.service';
 import { TaskService }          from './services/task.service';
+import { FilterItemsPipe }        from './pipes/filter-items.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const appRoutes: Routes = [
@@ -31,7 +32,8 @@ const appRoutes: Routes = [
     AddItemComponent,
     ItemFiltersComponent,
     ItemComponent,
-    FooterComponent
+    FooterComponent,
+    FilterItemsPipe
   ],
   imports: [
     BrowserModule,

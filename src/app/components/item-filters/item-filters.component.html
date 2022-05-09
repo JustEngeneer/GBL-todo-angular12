@@ -16,7 +16,7 @@
         </div>    
     </div>
     <div class="filter__content__select">
-        <button type="button" class="filter__content__select-btn" (click)="filterItems()"></button>
+        <button type="button" class="filter__content__select-btn" (click)="filter.emit(filterContent)"></button>
         <!-- (click)="filterItems()" -->
     </div>
 </div>

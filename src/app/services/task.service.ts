@@ -79,13 +79,6 @@ export class TaskService{
         this.save();
     }
 
-    filterItems(filterContent: string): void{
-        if(filterContent.length > 0) this.items = this.items.filter(item => item.textAssignment.indexOf(filterContent) > -1);
-        else this.load();
-        this.subj.next(this.items);
-    }
-
-
     getItemIndex(id: number): number{
         return this.items.findIndex(item => item.id === id);
     }

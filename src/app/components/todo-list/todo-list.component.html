@@ -2,7 +2,7 @@
 <app-add-item></app-add-item>
 <app-item-filters
     (sort)="sortItems($event)" 
-    (filter)="render($event)"
+    (filter)="filterItems($event)"
     >
 </app-item-filters>
 <app-item
@@ -11,7 +11,7 @@
     [priority]="item.priority"
     [textAssignment]="item.textAssignment"
     [taskDone]="item.taskDone"
-    *ngFor="let item of items | async; let i = index"
+    *ngFor="let item of (items | async) | filterItems:filterExp;  let i = index"
     >
 </app-item>
 <div class="wrapper">

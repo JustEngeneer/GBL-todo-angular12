@@ -17,11 +17,11 @@ export class ItemFiltersComponent {
 
     ngOnInit(): void {
     }
-
+/*
     filterItems(): void {
        this.taskSvc.filterItems(this.filterContent);
        this.filter.emit(this.filterContent)
     }
-
+*/
 
 }
