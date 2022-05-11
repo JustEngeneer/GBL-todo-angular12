@@ -12,6 +12,8 @@ import { TaskService } from "../../services/task.service";
 export class TodoListComponent implements OnInit {
     items: Observable<any>;
     filterExp: string = '';  
+    modalRemove: boolean = false;
+    idRemove: number = 0;
 
     constructor(private taskSvc: TaskService) { 
         this.items = this.taskSvc.todos;
@@ -28,6 +30,16 @@ export class TodoListComponent implements OnInit {
 
     filterItems(filterContent: string): void{
         this.filterExp = filterContent;
+    }
+
+    requestRem(param: number ): void{
+        this.idRemove = param;
+        this.modalRemove = true;
+    }
+
+    clickRemove(mode: number) {
+        this.modalRemove = false;
+        if (mode == 1) this.taskSvc.remove(this.idRemove);
     }
 }
 
