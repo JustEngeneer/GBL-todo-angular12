@@ -9,6 +9,7 @@ import { AddItemComponent }     from './components/add-item/add-item.component';
 import { ItemFiltersComponent } from './components/item-filters/item-filters.component';
 import { ItemComponent }        from './components/item/item.component';
 import { FooterComponent }      from './components/footer/footer.component';
+import { MW_RemoveComponent }  from './components/mw-remove/mw-remove.component';
 
 import { AppRoutingModule }     from './app-routing.module';
 import { Routes, RouterModule } from '@angular/router';
@@ -33,7 +34,8 @@ const appRoutes: Routes = [
     ItemFiltersComponent,
     ItemComponent,
     FooterComponent,
-    FilterItemsPipe
+    FilterItemsPipe,
+    MW_RemoveComponent
   ],
   imports: [
     BrowserModule,

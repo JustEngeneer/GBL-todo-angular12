@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, EventEmitter, OnInit, Input, Output } from "@angular/core";
 import { TaskService } from "../../services/task.service";
 
 @Component({
@@ -14,6 +14,8 @@ export class ItemComponent {
     @Input('textAssignment')  textAssignment: string = '';
     @Input('taskDone') taskDone: boolean = false;
 
+    @Output() requestRemove = new EventEmitter()
+
     constructor(private taskSvc: TaskService){ }
 
     ngOnInit(){
@@ -26,7 +28,9 @@ export class ItemComponent {
         this.taskSvc.done(this.id);
     }
     remove(){
-        this.taskSvc.remove(this.id)
+        this.requestRemove.emit(this.id);
+        //this.taskSvc.remove(this.id)
+
     }
 
     changePriority(value: number){

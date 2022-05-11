@@ -1,3 +1,7 @@
+<mw-remove
+    *ngIf="modalRemove"
+    (choiceRemove)="clickRemove($event)">
+</mw-remove>
 <h1 class="wrapper todo__title">TODO list</h1>
 <app-add-item></app-add-item>
 <app-item-filters
@@ -6,6 +10,7 @@
     >
 </app-item-filters>
 <app-item
+    (requestRemove)="requestRem($event)"
     [id]="item.id"
     [date]="item.date"
     [priority]="item.priority"

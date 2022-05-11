@@ -1,0 +1,22 @@
+.backdrop{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: rgba($color: #000000, $alpha: .3);
+}
+
+.remove{
+    padding: 1rem;
+    background: white;
+    margin-top: 20%;
+    position: absolute;
+    left: 45%;
+    transform: translate(-50%, 0);
+
+    &__btn{
+        display: flex;
+        justify-content: space-around;
+    }
+}
