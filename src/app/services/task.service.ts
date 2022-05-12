@@ -31,8 +31,13 @@ export class TaskService{
         this.save();
     }
 
-    edit(task: any){
+    edit(id: number, newText: string){
 
+        console.log(id, newText)
+
+        let index: number = this.getItemIndex(id);
+        this.items[index].textAssignment = newText;
+        this.save();
     }
 
     done(id: number): void{

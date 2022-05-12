@@ -14,6 +14,9 @@ export class TodoListComponent implements OnInit {
     filterExp: string = '';  
     modalRemove: boolean = false;
     idRemove: number = 0;
+    modalEdit: boolean = false;
+    idEdit: number = 0;
+    textEdit: string = '';
 
     constructor(private taskSvc: TaskService) { 
         this.items = this.taskSvc.todos;
@@ -36,10 +39,26 @@ export class TodoListComponent implements OnInit {
         this.idRemove = param;
         this.modalRemove = true;
     }
-
     clickRemove(mode: number) {
         this.modalRemove = false;
         if (mode == 1) this.taskSvc.remove(this.idRemove);
+    }
+
+    requestEdit(param: any[]): void{
+        this.idEdit = param[0];
+        this.textEdit = param[1];
+        this.modalEdit = true;
+    }
+    clickEdit(param: any[]): void{
+        let mode = param[0];
+        let newText = param[1];
+        this.modalEdit = false;
+
+        console.log('click procesing '+newText)
+
+        if (mode == 1) {
+            this.taskSvc.edit(this.idEdit, newText);
+        }    
     }
 }
 
