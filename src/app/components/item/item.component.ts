@@ -14,7 +14,8 @@ export class ItemComponent {
     @Input('textAssignment')  textAssignment: string = '';
     @Input('taskDone') taskDone: boolean = false;
 
-    @Output() requestRemove = new EventEmitter()
+    @Output() requestRemove = new EventEmitter();
+    @Output() requestEdit   = new EventEmitter(); 
 
     constructor(private taskSvc: TaskService){ }
 
@@ -22,15 +23,13 @@ export class ItemComponent {
     }
 
     edit(){
-        this.taskSvc.edit(this.id)
+        this.requestEdit.emit([this.id, this.textAssignment]);
     }
     done(){
         this.taskSvc.done(this.id);
     }
     remove(){
         this.requestRemove.emit(this.id);
-        //this.taskSvc.remove(this.id)
-
     }
 
     changePriority(value: number){

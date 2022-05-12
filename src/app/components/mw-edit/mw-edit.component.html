@@ -1,0 +1,12 @@
+<div class="backdrop"></div>
+
+<div class="edit">
+    <p>Edit text assignment</p>
+
+    <textarea cols="30" rows="10" [(ngModel)]="textEdit" ></textarea>
+
+    <div class="edit__btn">
+        <button class="edit__btn_cancel"  (click)="clickEdit(0)">Cancel</button>
+        <button class="edit__btn_save"    (click)="clickEdit(1)">Save</button>
+    </div>
+</div>
