@@ -1,5 +1,11 @@
+<!--
+        wrapper: true,
+        item: true
+        якщо значення завджи true то завжди треба додавати за допомогою атрибута класу
+        -->
+
 <div [ngClass]="{
-        wrapper: true, 
+        wrapper: true,
         item: true,
         item__done: taskDone
     }">
@@ -13,26 +19,31 @@
             <button type="button" class="item__priority_change-btn item__priority_change-btn-up" (click)="changePriority(1)"></button>
             <button type="button" class="item__priority_change-btn item__priority_change-btn-down" (click)="changePriority(-1)"></button>
         </div>
-    </div>    
+    </div>
     <p class="item__desc"> {{textAssignment}} </p>
     <ul class="item__actions">
         <li>
             <button type="button" class="item__actions_btn item__actions_edit" (click)="edit()"></button>
         </li>
         <li>
-            <button type="button" 
+          <!--
+                    item__actions_btn:true,
+                    item__actions_done:true,
+                    якщо значення завджи true то завжди треба додавати за допомогою атрибута класу
+        -->
+            <button type="button"
                 [ngClass]="{
                     item__actions_btn:true,
                     item__actions_done:true,
                     task__outstanding: !taskDone
-                }" 
+                }"
                 (click)="done()">
             </button>
         </li>
         <li>
             <button type="button" class="item__actions_btn item__actions_remove" (click)="remove()"></button>
         </li>
-    
+
     </ul>
 
 </div>

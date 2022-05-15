@@ -8,14 +8,14 @@ import { TaskService } from "../../services/task.service";
 })
 
 export class ItemComponent {
-    @Input('id') id: number = 0;
-    @Input('priority') priority: number = 0;
-    @Input('date') date: number = Date.now();
-    @Input('textAssignment')  textAssignment: string = '';
-    @Input('taskDone') taskDone: boolean = false;
+    @Input('id') id: number = 0; // краще передати один об'єкт в @Input а не по частинах
+    @Input('priority') priority: number = 0; // краще передати один об'єкт в @Input а не по частинах
+    @Input('date') date: number = Date.now(); // це значення повинно бути ініціалізоване при створення нової todo, а не тут
+    @Input('textAssignment')  textAssignment: string = ''; // краще передати один об'єкт в @Input а не по частинах
+    @Input('taskDone') taskDone: boolean = false; // краще передати один об'єкт в @Input а не по частинах
 
-    @Output() requestRemove = new EventEmitter();
-    @Output() requestEdit   = new EventEmitter(); 
+    @Output() requestRemove = new EventEmitter(); // requestRemove назва некоректна еміттери краще назвати remove
+    @Output() requestEdit   = new EventEmitter(); // так само і тут
 
     constructor(private taskSvc: TaskService){ }
 

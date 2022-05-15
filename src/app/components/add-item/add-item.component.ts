@@ -17,15 +17,15 @@ export class AddItemComponent {
         private taskSvc: TaskService
     ) {
         this.addForm = formBuilder.group({
-            "itemContent": ["",[Validators.required, Validators.minLength(5)]]
+            "itemContent": ["",[Validators.required, Validators.minLength(5)]] // "itemContent" кавички не потрібні!
         });
     }
 
-    ngOnInit(): void {
+    ngOnInit(): void { // пустий метод
     }
 
     add(){
-        this.taskSvc.add(this.textAssignment);
+        this.taskSvc.add(this.textAssignment); // немає чистки або перевірки на пробіли ! (можна додати пустий item)
         this.textAssignment = '';
-    }    
+    }
 }

@@ -25,7 +25,7 @@ export class TaskService{
              date: Date.now(),
              textAssignment: taskText,
              taskDone: false
-        }     
+        }
         this.items.push(task);
         this.subj.next(this.items);
         this.save();

@@ -6,3 +6,10 @@
 @import url('app/common.scss');
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+//В проекті завжди скидай дефолтні паддінги та маржіни. Щоб в подальшому вони не заважали впровадженню майбутньму дизайну та стилям.
+//*{
+//  margin: 0;
+//  padding: 0;
+//  box-sizing: border-box;
+//}

@@ -8,26 +8,25 @@ import { TaskService } from "../../services/task.service";
     templateUrl: 'todo-list.component.html',
     styleUrls: ['todo-list.component.scss']
 })
-
 export class TodoListComponent implements OnInit {
-    items: Observable<any>;
-    filterExp: string = '';  
+    items: Observable<any>; // чом не використовуємо інтерфесів ???????
+    filterExp: string = '';
     modalRemove: boolean = false;
-    idRemove: number = 0;
-    modalEdit: boolean = false;
+    idRemove: number = 0; // idEdit можна об'єднати в одну змінну
+    modalEdit: boolean = false; // цю змінну краще назвати showModalEdit
     idEdit: number = 0;
     textEdit: string = '';
 
-    constructor(private taskSvc: TaskService) { 
-        this.items = this.taskSvc.todos;
+    constructor(private taskSvc: TaskService) {
+        this.items = this.taskSvc.todos; // this.taskSvc.todos можна відразу використовувати в шаблоні, якщо змінна сервісу буде public
     }
 
     ngOnInit(): void {
     }
 
     sortItems(params: any): void {
-        let fieldName: string = params[0]; 
-        let mode: number = params[1]; 
+        let fieldName: string = params[0]; //якщо значення в змінній не змінюється тоді викор. const а не let
+        let mode: number = params[1];
         this.taskSvc.sortItems(fieldName, mode);
     }
 
@@ -56,9 +55,9 @@ export class TodoListComponent implements OnInit {
 
         console.log('click procesing '+newText)
 
-        if (mode == 1) {
+        if (mode == 1) { // що таке mode 1 ?? такі речі виносять в enum
             this.taskSvc.edit(this.idEdit, newText);
-        }    
+        }
     }
 }
 

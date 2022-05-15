@@ -6,6 +6,7 @@
     <textarea cols="30" rows="10" [(ngModel)]="textEdit" ></textarea>
 
     <div class="edit__btn">
+<!--      краще використати enum (ModalActions.close/save) а не mode 0,1...-->
         <button class="edit__btn_cancel"  (click)="clickEdit(0)">Cancel</button>
         <button class="edit__btn_save"    (click)="clickEdit(1)">Save</button>
     </div>

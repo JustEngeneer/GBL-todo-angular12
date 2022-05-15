@@ -9,8 +9,9 @@
 </mw-edit>
 <h1 class="wrapper todo__title">TODO list</h1>
 <app-add-item></app-add-item>
+<!--app-item-filters некоректна назва для компонента фільтрів. Адже ми сортуємо не Item а Список items -->
 <app-item-filters
-    (sort)="sortItems($event)" 
+    (sort)="sortItems($event)"
     (filter)="filterItems($event)"
     >
 </app-item-filters>
@@ -29,4 +30,4 @@
     <h4 *ngIf="(items | async)?.length === 0">
         Todo list is empty!
     </h4>
-</div>    
+</div>

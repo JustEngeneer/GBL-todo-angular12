@@ -20,7 +20,7 @@ import { TaskService }          from './services/task.service';
 import { FilterItemsPipe }        from './pipes/filter-items.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-const appRoutes: Routes = [
+const appRoutes: Routes = [ // Ці роути мають бути в app-routing.module.ts
   {path: '',          component: LoginComponent},
   {path: 'todo-list', component: TodoListComponent},
   {path: '**',        component: LoginComponent}
@@ -36,15 +36,15 @@ const appRoutes: Routes = [
     ItemComponent,
     FooterComponent,
     FilterItemsPipe,
-    MW_RemoveComponent,
-    MW_EditComponent
+    MW_RemoveComponent, // незрозуміла назва для компоненту. Неправильна назва по style guide angular
+    MW_EditComponent // https://angular.io/guide/styleguide
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule,
-    RouterModule.forRoot(appRoutes),
+    AppRoutingModule, // неправильно використовується цей модуль. Розберися як працює масив exports в модулях.
+    RouterModule.forRoot(appRoutes), // Цей імпорт можна взагалі видалити так як ми його експортим в app-routing.module.ts
     BrowserAnimationsModule
   ],
   providers: [

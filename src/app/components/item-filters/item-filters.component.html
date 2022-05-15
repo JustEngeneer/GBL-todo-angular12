@@ -13,9 +13,10 @@
         <div class="filter__content__sort">
             <button type="button" class="filter__content__sort-btn filter__content__sort-btn-up"   (click)="sort.emit(['textAssignment',1])"></button>
             <button type="button" class="filter__content__sort-btn filter__content__sort-btn-down" (click)="sort.emit(['textAssignment',-1])"></button>
-        </div>    
+        </div>
     </div>
     <div class="filter__content__select">
+<!--      для чого ця кнопка ???-->
         <button type="button" class="filter__content__select-btn" (click)="filter.emit(filterContent)"></button>
         <!-- (click)="filterItems()" -->
     </div>

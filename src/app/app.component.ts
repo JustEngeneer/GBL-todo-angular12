@@ -5,7 +5,7 @@ import { TaskService } from './services/task.service';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  providers: []
+  providers: [] // якщо масив пустий то можна його не додавати сюди
 })
 export class AppComponent implements OnInit{
   title = 'todo';
@@ -16,10 +16,13 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit(): void{
-    //  Подписываемся на изменение тудушек. 
+    //  Подписываемся на изменение тудушек.
     //  Каздый раз, когда данные будут обновляться, сработает subscribe callback
     //  после вызова next в сервисе
-    this.taskSvc.todos.subscribe(
+
+    //Коментарі бажано писати на англійській мові.
+
+    this.taskSvc.todos.subscribe( //Незрозуміло для чого ми підписуємся на цей стрім.
       (data) => {
       console.log(data);
       }
