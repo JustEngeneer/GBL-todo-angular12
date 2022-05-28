@@ -1,5 +1,5 @@
-import { Component, EventEmitter, OnInit, Input, Output } from "@angular/core";
-import { TaskService } from "../../services/task.service";
+import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { ItemService } from "../../services/item.service";
 
 @Component({
     selector: 'app-item',
@@ -14,25 +14,21 @@ export class ItemComponent {
     @Input('textAssignment')  textAssignment: string = '';
     @Input('taskDone') taskDone: boolean = false;
 
-    @Output() requestRemove = new EventEmitter();
-    @Output() requestEdit   = new EventEmitter(); 
+    @Output() remove = new EventEmitter();
+    @Output() edit   = new EventEmitter(); 
 
-    constructor(private taskSvc: TaskService){ }
+    constructor(private _itemSvc: ItemService){ }
 
-    ngOnInit(){
+    editHandler(){
+        this.edit.emit([this.id, this.textAssignment]);
     }
-
-    edit(){
-        this.requestEdit.emit([this.id, this.textAssignment]);
+    doneHandler(){
+        this._itemSvc.done(this.id);
     }
-    done(){
-        this.taskSvc.done(this.id);
+    removeHandler(){
+        this.remove.emit(this.id);
     }
-    remove(){
-        this.requestRemove.emit(this.id);
-    }
-
     changePriority(value: number){
-        this.taskSvc.changePriority(this.id, value);
+        this._itemSvc.changeItemPriority(this.id, value);
     }
 }

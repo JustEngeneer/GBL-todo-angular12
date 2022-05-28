@@ -1,4 +1,4 @@
-import { Pipe, PipeTransform, OnDestroy } from "@angular/core";
+import { Pipe, PipeTransform } from "@angular/core";
 
 @Pipe({
     name: 'filterItems',

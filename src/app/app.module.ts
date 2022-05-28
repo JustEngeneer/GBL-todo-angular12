@@ -6,17 +6,17 @@ import { AppComponent }         from './app.component';
 import { LoginComponent }       from './components/login/login.component';
 import { TodoListComponent }    from './components/todo-list/todo-list.component';
 import { AddItemComponent }     from './components/add-item/add-item.component';
-import { ItemFiltersComponent } from './components/item-filters/item-filters.component';
 import { ItemComponent }        from './components/item/item.component';
+import { ItemsFiltersComponent } from './components/items-filters/items-filters.component';
 import { FooterComponent }      from './components/footer/footer.component';
-import { MW_RemoveComponent }   from './components/mw-remove/mw-remove.component';
-import { MW_EditComponent }     from './components/mw-edit/mw-edit.component';
+import { ModalDialogRemoveComponent } from './components/modal-dialog-remove/modal-dialog-remove.component';
+import { ModalDialogEditComponent } from './components/modal-dialog-edit/modal-dialog-edit.component';
 
 import { AppRoutingModule }     from './app-routing.module';
 import { Routes, RouterModule } from '@angular/router';
 
-import { ModelService }         from './services/model.service';
-import { TaskService }          from './services/task.service';
+import { StorageService }         from './services/storage.service';
+import { ItemService }            from './services/item.service';
 import { FilterItemsPipe }        from './pipes/filter-items.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -32,12 +32,12 @@ const appRoutes: Routes = [
     LoginComponent,
     TodoListComponent,
     AddItemComponent,
-    ItemFiltersComponent,
+    ItemsFiltersComponent,
     ItemComponent,
     FooterComponent,
     FilterItemsPipe,
-    MW_RemoveComponent,
-    MW_EditComponent
+    ModalDialogRemoveComponent,
+    ModalDialogEditComponent
   ],
   imports: [
     BrowserModule,
@@ -48,8 +48,8 @@ const appRoutes: Routes = [
     BrowserAnimationsModule
   ],
   providers: [
-    ModelService,
-    TaskService
+    StorageService,
+    ItemService
   ],
   bootstrap: [AppComponent]
 })

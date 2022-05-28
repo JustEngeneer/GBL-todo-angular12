@@ -1,7 +1,6 @@
 .form__add{
     display: flex;
     justify-content: center;
-    //position: relative;
 
     &__desc{
         width: 65%;
@@ -13,11 +12,5 @@
         font-size: 18px;
         height: 30px;
         margin-top: 30px;
-        //width: 13%;
-        /*
-        right: 0;
-        position: absolute;
-        bottom: 5px;
-        */
     }
 }

@@ -1,6 +1,5 @@
-<div [ngClass]="{
-        wrapper: true, 
-        item: true,
+<div class="wrapper item" 
+    [ngClass]="{
         item__done: taskDone
     }">
     <div class="item__data">
@@ -17,20 +16,18 @@
     <p class="item__desc"> {{textAssignment}} </p>
     <ul class="item__actions">
         <li>
-            <button type="button" class="item__actions_btn item__actions_edit" (click)="edit()"></button>
+            <button type="button" class="item__actions_btn item__actions_edit" (click)="editHandler()"></button>
         </li>
         <li>
-            <button type="button" 
+            <button type="button" class="item__actions_btn item__actions_done"
                 [ngClass]="{
-                    item__actions_btn:true,
-                    item__actions_done:true,
-                    task__outstanding: !taskDone
+                    item__outstanding: !taskDone
                 }" 
-                (click)="done()">
+                (click)="doneHandler()">
             </button>
         </li>
         <li>
-            <button type="button" class="item__actions_btn item__actions_remove" (click)="remove()"></button>
+            <button type="button" class="item__actions_btn item__actions_remove" (click)="removeHandler()"></button>
         </li>
     
     </ul>

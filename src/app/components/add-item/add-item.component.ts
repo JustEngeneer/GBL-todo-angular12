@@ -1,6 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from "@angular/core";
+import { Component } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { TaskService } from "../../services/task.service";
+import { ItemService } from "../../services/item.service";
 
 @Component({
     selector: 'app-add-item',
@@ -9,23 +9,20 @@ import { TaskService } from "../../services/task.service";
 })
 
 export class AddItemComponent {
-    textAssignment: string = '';
-    addForm: FormGroup;
+    public textAssignment = '';
+    public addForm: FormGroup;
 
     constructor(
-        private formBuilder: FormBuilder,
-        private taskSvc: TaskService
+        private _formBuilder: FormBuilder,
+        private _itemSvc: ItemService
     ) {
-        this.addForm = formBuilder.group({
+        this.addForm = _formBuilder.group({
             "itemContent": ["",[Validators.required, Validators.minLength(5)]]
         });
     }
 
-    ngOnInit(): void {
-    }
-
-    add(){
-        this.taskSvc.add(this.textAssignment);
+    addHandler(){
+        this._itemSvc.addItem(this.textAssignment);
         this.textAssignment = '';
     }    
 }

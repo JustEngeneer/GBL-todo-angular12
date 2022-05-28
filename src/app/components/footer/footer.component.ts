@@ -7,12 +7,4 @@ import { Component } from "@angular/core";
 })
 
 export class FooterComponent {
-
-    constructor(){
-
-    }
-
-    ngOnInit(): void {
-        console.log(1);
-    }
 }

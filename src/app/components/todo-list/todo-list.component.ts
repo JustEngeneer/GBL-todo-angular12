@@ -1,7 +1,6 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { Observable }  from "rxjs";
-import { TaskService } from "../../services/task.service";
-
+import { ItemService } from "../../services/item.service";
 
 @Component({
     selector: 'app-todo-list',
@@ -9,55 +8,55 @@ import { TaskService } from "../../services/task.service";
     styleUrls: ['todo-list.component.scss']
 })
 
-export class TodoListComponent implements OnInit {
-    items: Observable<any>;
-    filterExp: string = '';  
-    modalRemove: boolean = false;
-    idRemove: number = 0;
-    modalEdit: boolean = false;
-    idEdit: number = 0;
-    textEdit: string = '';
+export class TodoListComponent {
+    public items: Observable<any>;
+    public filterExp = '';  
+    public showModalRemove = false;
+    public showModalEdit = false;
+    public textEdit = '';
+    public cancelSubmit = {
+        cancel: 0, 
+        submit: 1
+    };
+    private _idItem = 0;
 
-    constructor(private taskSvc: TaskService) { 
-        this.items = this.taskSvc.todos;
-    }
-
-    ngOnInit(): void {
+    constructor(private _itemSvc: ItemService) { 
+        this.items = this._itemSvc.todos;
     }
 
     sortItems(params: any): void {
-        let fieldName: string = params[0]; 
-        let mode: number = params[1]; 
-        this.taskSvc.sortItems(fieldName, mode);
+        const fieldName: string = params[0]; 
+        const sortMode: number = params[1]; 
+
+        this._itemSvc.sortItems(fieldName, sortMode);
     }
 
     filterItems(filterContent: string): void{
         this.filterExp = filterContent;
     }
 
-    requestRem(param: number ): void{
-        this.idRemove = param;
-        this.modalRemove = true;
+    requestRemove(param: number ): void{
+        this._idItem = param;
+        this.showModalRemove = true;
     }
-    clickRemove(mode: number) {
-        this.modalRemove = false;
-        if (mode == 1) this.taskSvc.remove(this.idRemove);
+    clickRemove(userChoice: number) {
+        this.showModalRemove = false;
+        if (userChoice == this.cancelSubmit.submit) this._itemSvc.removeItem(this._idItem);
     }
 
     requestEdit(param: any[]): void{
-        this.idEdit = param[0];
+        this._idItem = param[0];
         this.textEdit = param[1];
-        this.modalEdit = true;
+        this.showModalEdit = true;
     }
     clickEdit(param: any[]): void{
-        let mode = param[0];
-        let newText = param[1];
-        this.modalEdit = false;
+        const userChoice = param[0];
+        const newText = param[1];
 
-        console.log('click procesing '+newText)
+        this.showModalEdit = false;
 
-        if (mode == 1) {
-            this.taskSvc.edit(this.idEdit, newText);
+        if (userChoice == this.cancelSubmit.submit) {
+            this._itemSvc.editItem(this._idItem, newText);
         }    
     }
 }

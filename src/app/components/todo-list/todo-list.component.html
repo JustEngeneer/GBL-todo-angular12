@@ -1,22 +1,22 @@
-<mw-remove
-    *ngIf="modalRemove"
-    (choiceRemove)="clickRemove($event)">
-</mw-remove>
-<mw-edit
-    *ngIf="modalEdit"
+<modal-dialog-remove
+    *ngIf="showModalRemove"
+    (remove)="clickRemove($event)">
+</modal-dialog-remove>
+<modal-dialog-edit
+    *ngIf="showModalEdit"
     [textEdit]="textEdit"
-    (choiceEdit)="clickEdit($event)">
-</mw-edit>
+    (edit)="clickEdit($event)">
+</modal-dialog-edit>
 <h1 class="wrapper todo__title">TODO list</h1>
 <app-add-item></app-add-item>
-<app-item-filters
+<app-items-filters
     (sort)="sortItems($event)" 
     (filter)="filterItems($event)"
     >
-</app-item-filters>
+</app-items-filters>
 <app-item
-    (requestRemove)="requestRem($event)"
-    (requestEdit)="requestEdit($event)"
+    (remove)="requestRemove($event)"
+    (edit)="requestEdit($event)"
     [id]="item.id"
     [date]="item.date"
     [priority]="item.priority"
