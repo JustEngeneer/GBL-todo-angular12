@@ -13,18 +13,12 @@ import { ModalDialogRemoveComponent } from './components/modal-dialog-remove/mod
 import { ModalDialogEditComponent } from './components/modal-dialog-edit/modal-dialog-edit.component';
 
 import { AppRoutingModule }     from './app-routing.module';
-import { Routes, RouterModule } from '@angular/router';
 
 import { StorageService }         from './services/storage.service';
 import { ItemService }            from './services/item.service';
 import { FilterItemsPipe }        from './pipes/filter-items.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-const appRoutes: Routes = [
-  {path: '',          component: LoginComponent},
-  {path: 'todo-list', component: TodoListComponent},
-  {path: '**',        component: LoginComponent}
-];
 
 @NgModule({
   declarations: [
@@ -44,7 +38,6 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule
   ],
   providers: [
