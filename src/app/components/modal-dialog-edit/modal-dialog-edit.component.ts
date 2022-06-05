@@ -7,10 +7,17 @@ import { Component, Output, EventEmitter, Input } from "@angular/core";
 })
 
 export class ModalDialogEditComponent{
+    private _modalActions = {
+        cancel: 0,
+        save: 1
+    };
     @Input() textEdit = '';
     @Output() edit = new EventEmitter();
 
-    clickEdit(userChoice: number): void{
-        this.edit.emit([userChoice, this.textEdit]);
+    cancel(): void{
+        this.edit.emit([this._modalActions.cancel, this.textEdit]);
+    }
+    save(): void{
+        this.edit.emit([this._modalActions.save, this.textEdit]);
     }
 }

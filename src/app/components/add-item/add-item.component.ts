@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { textNewAssignmentValdator } from "../../shared/text-assignment-validator.directive";
 import { ItemService } from "../../services/item.service";
 
 @Component({
@@ -9,7 +10,8 @@ import { ItemService } from "../../services/item.service";
 })
 
 export class AddItemComponent {
-    public textAssignment = '';
+    public textNewAssignment = '';
+    public minTextLength = 5;
     public addForm: FormGroup;
 
     constructor(
@@ -17,12 +19,12 @@ export class AddItemComponent {
         private _itemSvc: ItemService
     ) {
         this.addForm = _formBuilder.group({
-            "itemContent": ["",[Validators.required, Validators.minLength(5)]]
+            newAssignment: ["",[Validators.required, Validators.minLength(this.minTextLength), textNewAssignmentValdator(this.minTextLength)]]  
         });
     }
 
     addHandler(){
-        this._itemSvc.addItem(this.textAssignment);
-        this.textAssignment = '';
+        this._itemSvc.createItem(this.textNewAssignment);
+        this.textNewAssignment = '';
     }    
 }

@@ -17,16 +17,12 @@
 <app-item
     (remove)="requestRemove($event)"
     (edit)="requestEdit($event)"
-    [id]="item.id"
-    [date]="item.date"
-    [priority]="item.priority"
-    [textAssignment]="item.textAssignment"
-    [taskDone]="item.taskDone"
-    *ngFor="let item of (items | async) | filterItems:filterExp;  let i = index"
+    [item] = "item"
+    *ngFor="let item of (itemSvc.todos | async) | filterItems:filterExp;  let i = index"
     >
 </app-item>
 <div class="wrapper">
-    <h4 *ngIf="(items | async)?.length === 0">
+    <h4 *ngIf="(itemSvc.todos | async)?.length === 0">
         Todo list is empty!
     </h4>
 </div>    

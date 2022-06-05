@@ -7,10 +7,17 @@ import { Component, Output, EventEmitter } from "@angular/core";
 })
 
 export class ModalDialogRemoveComponent {
+    private _modalActions = {
+        cancel: 0,
+        apply: 1
+    };
     @Output() remove = new EventEmitter();
 
-    clickRemove(userChoice: number): void{
-        this.remove.emit(userChoice);
+    apply(): void{
+        this.remove.emit(this._modalActions.apply);
+    }
+    cancel(): void{
+        this.remove.emit(this._modalActions.cancel);
     }
 
 }

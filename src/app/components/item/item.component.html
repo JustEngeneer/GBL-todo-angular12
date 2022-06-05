@@ -1,19 +1,19 @@
 <div class="wrapper item" 
     [ngClass]="{
-        item__done: taskDone
+        item__done: item.taskDone
     }">
     <div class="item__data">
-        <span>{{date | date:"dd.MM.yyyy"}}</span>
-        <span>{{date | date:"HH:mm"}}</span>
+        <span>{{item.date | date:"dd.MM.yyyy"}}</span>
+        <span>{{item.date | date:"HH:mm"}}</span>
     </div>
     <div class="item__priority">
-        <span class="item__priority_value">{{ priority }}</span>
+        <span class="item__priority_value">{{ item.priority }}</span>
         <div class="item__priority_change">
             <button type="button" class="item__priority_change-btn item__priority_change-btn-up" (click)="changePriority(1)"></button>
             <button type="button" class="item__priority_change-btn item__priority_change-btn-down" (click)="changePriority(-1)"></button>
         </div>
     </div>    
-    <p class="item__desc"> {{textAssignment}} </p>
+    <p class="item__desc"> {{item.textAssignment}} </p>
     <ul class="item__actions">
         <li>
             <button type="button" class="item__actions_btn item__actions_edit" (click)="editHandler()"></button>
@@ -21,7 +21,7 @@
         <li>
             <button type="button" class="item__actions_btn item__actions_done"
                 [ngClass]="{
-                    item__outstanding: !taskDone
+                    item__outstanding: !item.taskDone
                 }" 
                 (click)="doneHandler()">
             </button>

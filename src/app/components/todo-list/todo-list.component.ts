@@ -1,5 +1,4 @@
 import { Component } from "@angular/core";
-import { Observable }  from "rxjs";
 import { ItemService } from "../../services/item.service";
 
 @Component({
@@ -9,7 +8,6 @@ import { ItemService } from "../../services/item.service";
 })
 
 export class TodoListComponent {
-    public items: Observable<any>;
     public filterExp = '';  
     public showModalRemove = false;
     public showModalEdit = false;
@@ -18,45 +16,43 @@ export class TodoListComponent {
         cancel: 0, 
         submit: 1
     };
-    private _idItem = 0;
+    private _itemId = 0;
 
-    constructor(private _itemSvc: ItemService) { 
-        this.items = this._itemSvc.todos;
+    constructor(public itemSvc: ItemService) { 
     }
-
     sortItems(params: any): void {
         const fieldName: string = params[0]; 
         const sortMode: number = params[1]; 
 
-        this._itemSvc.sortItems(fieldName, sortMode);
+        this.itemSvc.sortItems(fieldName, sortMode);
     }
 
     filterItems(filterContent: string): void{
         this.filterExp = filterContent;
     }
 
-    requestRemove(param: number ): void{
-        this._idItem = param;
+    requestRemove(itemId: number ): void{
+        this._itemId = itemId;
         this.showModalRemove = true;
     }
     clickRemove(userChoice: number) {
         this.showModalRemove = false;
-        if (userChoice == this.cancelSubmit.submit) this._itemSvc.removeItem(this._idItem);
+        if (userChoice == this.cancelSubmit.submit) this.itemSvc.deleteItem(this._itemId);
     }
 
-    requestEdit(param: any[]): void{
-        this._idItem = param[0];
-        this.textEdit = param[1];
+    requestEdit(params: any[]): void{
+        this._itemId = params[0];
+        this.textEdit = params[1];
         this.showModalEdit = true;
     }
-    clickEdit(param: any[]): void{
-        const userChoice = param[0];
-        const newText = param[1];
+    clickEdit(params: any[]): void{
+        const userChoice = params[0];
+        const newText = params[1];
 
         this.showModalEdit = false;
 
         if (userChoice == this.cancelSubmit.submit) {
-            this._itemSvc.editItem(this._idItem, newText);
+            this.itemSvc.updateItem(this._itemId, newText);
         }    
     }
 }

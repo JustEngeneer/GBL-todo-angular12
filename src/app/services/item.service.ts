@@ -5,7 +5,7 @@ import { BehaviorSubject } from "rxjs";
 @Injectable()
 export class ItemService{
     private _items: any[] = [];
-    public subj: BehaviorSubject<any> = new BehaviorSubject([]);
+    private _subj: BehaviorSubject<any> = new BehaviorSubject([]);
 
     constructor(private _storage: StorageService) {
         this.loadItems();
@@ -13,12 +13,12 @@ export class ItemService{
 
     //  flow
     get todos() {
-        return this.subj.asObservable();
+        return this._subj.asObservable();
     }
 
-    addItem(taskText: string) {
+    createItem(taskText: string) {
         const task = {
-             id: this._items.length,
+             id: Date.now(),
              priority: 1,
              date: Date.now(),
              textAssignment: taskText,
@@ -26,14 +26,21 @@ export class ItemService{
         };
 
         this._items.push(task);
-        this.subj.next(this._items);
+        this._subj.next(this._items);
         this.saveItems();
     }
 
-    editItem(id: number, newText: string){
+    updateItem(id: number, newText: string){
         const index: number = this.getItemIndex(id);
 
         this._items[index].textAssignment = newText;
+        this.saveItems();
+    }
+    deleteItem(id: number): void{
+        const index: number = this.getItemIndex(id);
+
+        this._items.splice(index,1);
+        this._subj.next(this._items);
         this.saveItems();
     }
 
@@ -44,17 +51,9 @@ export class ItemService{
         this.saveItems();
     }
 
-    removeItem(id: number): void{
-        const index: number = this.getItemIndex(id);
-
-        this._items.splice(index,1);
-        this.subj.next(this._items);
-        this.saveItems();
-    }
-
     loadItems(){
         this._items = this._storage.loadItems();
-        this.subj.next(this._items);
+        this._subj.next(this._items);
     }
 
     saveItems(){
@@ -77,7 +76,7 @@ export class ItemService{
             return (a: any,b: any) => a[fieldName] > b[fieldName] ? mode : -mode;
         }
         this._items.sort(byField(fieldName, mode));
-        this.subj.next(this._items);
+        this._subj.next(this._items);
         this.saveItems();
     }
 

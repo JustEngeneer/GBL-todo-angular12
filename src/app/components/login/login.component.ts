@@ -1,10 +1,12 @@
 import { Component } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { RegExpPatterns } from "../../shared/reg-exp.component";
 
 @Component({
     selector: 'app-login',
     templateUrl: 'login.component.html',
-    styleUrls: ['login.component.scss']
+    styleUrls: ['login.component.scss'],
+    providers: [RegExpPatterns]
 })
 
 export class LoginComponent {
@@ -13,17 +15,19 @@ export class LoginComponent {
     public loginForm: FormGroup;
     public rLink = '';
 
-    public emailRegExp: RegExp = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-    public passwRegExp: RegExp = /^[a-zA-Z0-9._-]{8,12}$/;
+    constructor(
+        private _formBuilder: FormBuilder,
+        private _regExpPatterns: RegExpPatterns
+        ) {
+            this.loginForm = _formBuilder.group({
+                userEmail:    ["",[Validators.required, Validators.pattern(this._regExpPatterns.emailPattern)]],
+                userPassword: ["",[Validators.required, Validators.pattern(this._regExpPatterns.passwPattern)]]
+            });
+        }
 
-    constructor(private _formBuilder: FormBuilder) {
-        this.loginForm = _formBuilder.group({
-            "userEmail": ["",[Validators.required, Validators.pattern(this.emailRegExp)]],
-            "userPassword": ["",[Validators.required, Validators.pattern(this.passwRegExp)]]
-        });
-    }
-
-    public onSubmit(){
+    ngOnSubmit(){
+        console.log(111);
+        //routerLink = 'todo-list'
         //this.rLink = 'todo-list';
     }
 }

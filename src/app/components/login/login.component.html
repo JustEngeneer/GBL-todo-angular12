@@ -1,6 +1,6 @@
 <div class="wrapper">
     <h2 class="login__title">Login page</h2>
-    <form class="login__form" [formGroup]="loginForm" (ngSubmit)="onSubmit()" >
+    <form class="login__form" [formGroup]="loginForm" >
         <label> Email *
             <br>
             <input class="login__email__input" [(ngModel)]="login" name="login" formControlName="userEmail" type="text" placeholder=" example@gmail.com">
@@ -23,6 +23,6 @@
         </div>    
         <p>The fields with * tag are required</p>
         <br>
-        <button class="login__submit" [disabled]="loginForm.invalid" routerLink = 'todo-list' >Login</button>
+        <button class="login__submit" type="submit" [disabled]="loginForm.invalid" routerLink = 'todo-list' >Login</button>
     </form>
 </div>    

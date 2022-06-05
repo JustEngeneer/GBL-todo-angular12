@@ -8,27 +8,23 @@ import { ItemService } from "../../services/item.service";
 })
 
 export class ItemComponent {
-    @Input('id') id: number = 0;
-    @Input('priority') priority: number = 0;
-    @Input('date') date: number = Date.now();
-    @Input('textAssignment')  textAssignment: string = '';
-    @Input('taskDone') taskDone: boolean = false;
-
+    @Input('item') item: any;
     @Output() remove = new EventEmitter();
     @Output() edit   = new EventEmitter(); 
 
-    constructor(private _itemSvc: ItemService){ }
+    constructor(private _itemSvc: ItemService){ 
+    }
 
     editHandler(){
-        this.edit.emit([this.id, this.textAssignment]);
+        this.edit.emit([this.item.id, this.item.textAssignment]);
     }
     doneHandler(){
-        this._itemSvc.done(this.id);
+        this._itemSvc.done(this.item.id);
     }
     removeHandler(){
-        this.remove.emit(this.id);
+        this.remove.emit(this.item.id);
     }
     changePriority(value: number){
-        this._itemSvc.changeItemPriority(this.id, value);
+        this._itemSvc.changeItemPriority(this.item.id, value);
     }
 }
