@@ -16,7 +16,7 @@ export class TodoListComponent {
         cancel: 0, 
         submit: 1
     };
-    private _itemId = 0;
+    private _item: any;
 
     constructor(public itemSvc: ItemService) { 
     }
@@ -31,28 +31,28 @@ export class TodoListComponent {
         this.filterExp = filterContent;
     }
 
-    requestRemove(itemId: number ): void{
-        this._itemId = itemId;
+    requestDelete(item: any ): void{
+        this._item = item;
         this.showModalRemove = true;
     }
-    clickRemove(userChoice: number) {
+    clickDelete(userChoice: number) {
         this.showModalRemove = false;
-        if (userChoice == this.cancelSubmit.submit) this.itemSvc.deleteItem(this._itemId);
+        if (userChoice == this.cancelSubmit.submit) this.itemSvc.deleteItem(this._item);
     }
 
-    requestEdit(params: any[]): void{
-        this._itemId = params[0];
-        this.textEdit = params[1];
+    requestUpdate(item: any): void{
+        this._item = item;
+        this.textEdit = this._item.textAssignment;
         this.showModalEdit = true;
     }
-    clickEdit(params: any[]): void{
+    clickUpdate(params: any[]): void{
         const userChoice = params[0];
         const newText = params[1];
 
         this.showModalEdit = false;
-
         if (userChoice == this.cancelSubmit.submit) {
-            this.itemSvc.updateItem(this._itemId, newText);
+            this._item.textAssignment = newText;
+            this.itemSvc.updateItem(this._item);
         }    
     }
 }

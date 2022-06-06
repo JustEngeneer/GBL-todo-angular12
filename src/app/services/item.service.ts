@@ -2,12 +2,19 @@ import { Injectable } from "@angular/core";
 import { StorageService } from "./storage.service";
 import { BehaviorSubject } from "rxjs";
 
+interface ItemActions<T> {
+    createItem: (obj: T) => T;
+    updateItem: (obj: T) => T;
+    deleteItem: (obj: T) => T;
+};
+
 @Injectable()
-export class ItemService{
-    private _items: any[] = [];
+export class ItemService implements ItemActions<any>{
+    private _items: any[];
     private _subj: BehaviorSubject<any> = new BehaviorSubject([]);
 
     constructor(private _storage: StorageService) {
+        this._items = [];
         this.loadItems();
     }
 
@@ -16,36 +23,28 @@ export class ItemService{
         return this._subj.asObservable();
     }
 
-    createItem(taskText: string) {
-        const task = {
-             id: Date.now(),
-             priority: 1,
-             date: Date.now(),
-             textAssignment: taskText,
-             taskDone: false
-        };
-
-        this._items.push(task);
+    createItem(item: any) {
+        this._items.push(item);
         this._subj.next(this._items);
         this.saveItems();
     }
 
-    updateItem(id: number, newText: string){
-        const index: number = this.getItemIndex(id);
+    updateItem(item: any){
+        const index: number = this.getItemIndex(item.id);
 
-        this._items[index].textAssignment = newText;
+        this._items[index] = item;
         this.saveItems();
     }
-    deleteItem(id: number): void{
-        const index: number = this.getItemIndex(id);
+    deleteItem(item: any): void{
+        const index: number = this.getItemIndex(item.id);
 
         this._items.splice(index,1);
         this._subj.next(this._items);
         this.saveItems();
     }
 
-    done(id: number): void{
-        const index: number = this.getItemIndex(id);
+    done(item: any): void{
+        const index: number = this.getItemIndex(item.id);
 
         this._items[index].taskDone = !this._items[index].taskDone;
         this.saveItems();

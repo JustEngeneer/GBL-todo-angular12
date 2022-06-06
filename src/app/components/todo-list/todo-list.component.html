@@ -1,11 +1,11 @@
 <modal-dialog-remove
     *ngIf="showModalRemove"
-    (remove)="clickRemove($event)">
+    (remove)="clickDelete($event)">
 </modal-dialog-remove>
 <modal-dialog-edit
     *ngIf="showModalEdit"
     [textEdit]="textEdit"
-    (edit)="clickEdit($event)">
+    (edit)="clickUpdate($event)">
 </modal-dialog-edit>
 <h1 class="wrapper todo__title">TODO list</h1>
 <app-add-item></app-add-item>
@@ -15,8 +15,8 @@
     >
 </app-items-filters>
 <app-item
-    (remove)="requestRemove($event)"
-    (edit)="requestEdit($event)"
+    (remove)="requestDelete($event)"
+    (edit)="requestUpdate($event)"
     [item] = "item"
     *ngFor="let item of (itemSvc.todos | async) | filterItems:filterExp;  let i = index"
     >

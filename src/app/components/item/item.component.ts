@@ -16,13 +16,13 @@ export class ItemComponent {
     }
 
     editHandler(){
-        this.edit.emit([this.item.id, this.item.textAssignment]);
+        this.edit.emit(this.item);
     }
     doneHandler(){
-        this._itemSvc.done(this.item.id);
+        this._itemSvc.done(this.item);
     }
     removeHandler(){
-        this.remove.emit(this.item.id);
+        this.remove.emit(this.item);
     }
     changePriority(value: number){
         this._itemSvc.changeItemPriority(this.item.id, value);

@@ -1,7 +1,7 @@
 import { Directive, Input } from "@angular/core";
 import { AbstractControl, NG_VALIDATORS, ValidationErrors, Validator, ValidatorFn } from "@angular/forms";
 
-export function textNewAssignmentValdator(minTextLength: number): ValidatorFn {
+export function newAssignmentTextValdator(minTextLength: number): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
         const newTextIsEmpty = control.value.trim().length < minTextLength;
         return newTextIsEmpty ? {minTextLength: {value: control.value}} : null;
@@ -9,7 +9,7 @@ export function textNewAssignmentValdator(minTextLength: number): ValidatorFn {
 } 
 
 @Directive({
-    selector: '[appTextNewAssignment]',
+    selector: '[appNewAssignmentText]',
     providers: [{provide: NG_VALIDATORS, useExisting: CheckTextAssignmentDirective, multi: true}]
 })
 
@@ -17,6 +17,6 @@ export class CheckTextAssignmentDirective implements Validator {
     @Input() minTextLength = 5;
 
     validate(control: AbstractControl): ValidationErrors | null {
-        return textNewAssignmentValdator(this.minTextLength)(control);
+        return newAssignmentTextValdator(this.minTextLength)(control);
     }
 }
