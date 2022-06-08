@@ -9,13 +9,12 @@
         <button class="filter__priority__btn filter__priority__btn_down" (click)="sort.emit(['priority',sortModes.sortDescending])"></button>
     </div>
     <div class="filter__content">
-        <textarea name="filterContent" class="filter__content__text" [(ngModel)]="filterContent" ></textarea>
+        <form class="filter__content__form" [formGroup]="textFilterForm" (ngSubmit)="filterTextEmit()">
+            <input class="filter__content__form__text" [(ngModel)]="filterText" formControlName="filterText" type="text" >
+        </form>
         <div class="filter__content__sort">
             <button type="button" class="filter__content__sort-btn filter__content__sort-btn-up"   (click)="sort.emit(['textAssignment',sortModes.sortAscending])"></button>
             <button type="button" class="filter__content__sort-btn filter__content__sort-btn-down" (click)="sort.emit(['textAssignment',sortModes.sortDescending])"></button>
-        </div>    
-    </div>
-    <div class="filter__content__select">
-        <button type="button" class="filter__content__select-btn" (click)="filter.emit(filterContent)"></button>
+        </div>
     </div>
 </div>

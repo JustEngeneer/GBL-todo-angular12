@@ -1,27 +1,59 @@
-# Todo
+# Todo v 1.1
+Перелік зауважень до версії 1.0
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.0.
+//В проекті завжди скидай дефолтні паддінги та маржіни. Щоб в подальшому вони не заважали впровадженню майбутньму дизайну та стилям.
+--> Скинув
 
-## Development server
+//  AppRoutingModule - неправильно використовується
+--> Виправив
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+//  MW_RemoveComponent, // незрозуміла назва для компоненту. Неправильна назва по style guide angular
+--> Творчо переробив усі імена у проекті. 
 
-## Code scaffolding
+//  ModelService - некоректна назва. І краще зробити його Singleton
+--> Перейменував та зробив його Singleton
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+//  якщо значення в змінній не змінюється тоді викор. const а не let  (todo-list)
+--> Доробив
 
-## Build
+//  чом не використовуємо інтерфесів ???????  (todo-list)
+--> Зробив інтерфейс. Поки робив, добре відчув різницю між процедурним програмуванням та ООП )). Я у захваті!
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+//  if (mode == 1) { // що таке mode 1 ?? такі речі виносять в enum  (todo-list)
+--> Прибрав "магічні константи" з коду. 
 
-## Running unit tests
+//  регулярні вирази краще виносити в окремий файл  (компонента Login).
+--> Я зробив файлик /shared/reg-exp.component.ts. В ньому зробив об'єкт RegExpPatterns. Але я трохи непевен - це те, що було треба?
+--> Чи може потрібно було якось по іншому робити?
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+//  для відправки форми краще юзати івент ngSubmit в тегі form  (компонента Login).
+--> Зроблено
 
-## Running end-to-end tests
+//  routerLink="todo-list" краще переходити по роуту програмно  (компонента Login).
+--> Зроблено  
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice.
+//  атрибут action="!#" не використовуємо в angular 
+--> прибрав
 
-## Further help
+//  Кнопка в компоненті items-filters
+--> Прибрав кнопку, натомість додав обробку івенту ngSubmit
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+/*
+  Компонент item:   @Input('id') id: number = 0; // краще передати один об'єкт в @Input а не по частинах
+                    @Input('priority') priority: number = 0; // краще передати один об'єкт в @Input а не по частинах
+                    @Input('date') date: number = Date.now(); // це значення повинно бути ініціалізоване при створення нової todo, а не тут
+    
+класи в template:
+        wrapper: true,
+        item: true
+        якщо значення завджи true то завжди треба додавати за допомогою атрибута класу
+*/
+-->  Доробив.   
+
+//  Компонент add-item
+//  this.addForm = formBuilder.group({
+//  "itemContent": ["",[Validators.required, Validators.minLength(5)]] // "itemContent" кавички не потрібні!
+--> Кавички прибрав. Але цей приклад був взятий з лекції Алекса. 
+
+// немає чистки або перевірки на пробіли ! (можна додати пустий item) 
+--> Доробив

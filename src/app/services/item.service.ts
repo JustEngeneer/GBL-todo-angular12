@@ -6,7 +6,7 @@ interface ItemActions<T> {
     createItem: (obj: T) => T;
     updateItem: (obj: T) => T;
     deleteItem: (obj: T) => T;
-};
+}
 
 @Injectable()
 export class ItemService implements ItemActions<any>{
@@ -25,7 +25,6 @@ export class ItemService implements ItemActions<any>{
 
     createItem(item: any) {
         this._items.push(item);
-        this._subj.next(this._items);
         this.saveItems();
     }
 
@@ -39,7 +38,6 @@ export class ItemService implements ItemActions<any>{
         const index: number = this.getItemIndex(item.id);
 
         this._items.splice(index,1);
-        this._subj.next(this._items);
         this.saveItems();
     }
 
@@ -75,7 +73,6 @@ export class ItemService implements ItemActions<any>{
             return (a: any,b: any) => a[fieldName] > b[fieldName] ? mode : -mode;
         }
         this._items.sort(byField(fieldName, mode));
-        this._subj.next(this._items);
         this.saveItems();
     }
 

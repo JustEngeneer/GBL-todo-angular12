@@ -1,7 +1,7 @@
 <div class="wrapper">
     <form class="form__add" [formGroup]="addForm" (ngSubmit)="addHandler()">
         <textarea class="form__add__desc" [(ngModel)]="textNewAssignment" formControlName="newAssignment" placeholder="The text of your new assignment could be here"></textarea>
-        <button class="form__add__submit" [disabled]="addForm.invalid" >Add</button>
+        <button class="form__add__submit" type="submit" [disabled]="addForm.invalid" >Add</button>
     </form>
     <p class="form-add-condition">* The text must contains at least {{minTextLength}} characters and can't consists only of spaces</p>
 </div>

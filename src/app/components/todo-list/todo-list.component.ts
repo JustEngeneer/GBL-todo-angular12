@@ -26,11 +26,9 @@ export class TodoListComponent {
 
         this.itemSvc.sortItems(fieldName, sortMode);
     }
-
-    filterItems(filterContent: string): void{
-        this.filterExp = filterContent;
+     filterItems(filterContent: string): void{
+         this.filterExp = filterContent;
     }
-
     requestDelete(item: any ): void{
         this._item = item;
         this.showModalRemove = true;

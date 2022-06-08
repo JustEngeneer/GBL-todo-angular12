@@ -19,7 +19,6 @@ import { ItemService }            from './services/item.service';
 import { FilterItemsPipe }        from './pipes/filter-items.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-
 @NgModule({
   declarations: [
     AppComponent,

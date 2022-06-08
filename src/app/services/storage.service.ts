@@ -1,10 +1,11 @@
 import { Injectable } from "@angular/core";
 
-@Injectable()
+@Injectable({providedIn: 'root'})
+
 export class StorageService{
     private _storage: any = window.localStorage;
     private readonly _key = 'ITEMS';
-    
+
     saveItems(data: any){
         const dataStr = JSON.stringify(data);
 

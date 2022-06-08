@@ -1,4 +1,5 @@
 import { Component, Output, EventEmitter } from "@angular/core";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
     selector: 'app-items-filters',
@@ -11,8 +12,21 @@ export class ItemsFiltersComponent {
         sortAscending: 1,
         sortDescending: -1
     };
-    public filterContent = '';
-    
+    public filterText = '';
+    public textFilterForm: FormGroup;
+
     @Output() sort   = new EventEmitter();
     @Output() filter = new EventEmitter();
+
+    constructor(
+        private _formBuilder: FormBuilder
+    ){
+        this.textFilterForm = _formBuilder.group({
+          filterText: ["",[Validators.required]]
+        })
+    }
+
+    filterTextEmit(){
+        this.filter.emit(this.filterText);
+    }
 }

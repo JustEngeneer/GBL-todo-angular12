@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { RegExpPatterns } from "../../shared/reg-exp.component";
+import { Router } from "@angular/router"
 
 @Component({
     selector: 'app-login',
@@ -13,21 +14,19 @@ export class LoginComponent {
     public login = '';
     public password = '';
     public loginForm: FormGroup;
-    public rLink = '';
 
     constructor(
         private _formBuilder: FormBuilder,
-        private _regExpPatterns: RegExpPatterns
+        private _regExpPatterns: RegExpPatterns,
+        private _router: Router
         ) {
             this.loginForm = _formBuilder.group({
                 userEmail:    ["",[Validators.required, Validators.pattern(this._regExpPatterns.emailPattern)]],
-                userPassword: ["",[Validators.required, Validators.pattern(this._regExpPatterns.passwPattern)]]
+                userPassword: ["",[Validators.required, Validators.pattern(this._regExpPatterns.pswPattern)]]
             });
         }
 
-    ngOnSubmit(){
-        console.log(111);
-        //routerLink = 'todo-list'
-        //this.rLink = 'todo-list';
+    onSubmit(){
+      this._router.navigate(['todo-list']);
     }
 }
